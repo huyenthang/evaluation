@@ -5,7 +5,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
 const ADMIN_PASSWORD = 'admin123';
 
 let db = {
@@ -44,7 +43,7 @@ let db = {
     { _id: '32', name: 'Y Huyên', major: 'F&B', gender: 'Nữ', department: 'FOH', batch: 'K46' },
     { _id: '33', name: 'Lảo Thị Già', major: 'Bếp', gender: 'Nữ', department: 'BOH', batch: 'K46' },
     { _id: '34', name: 'Vàng A Mùa', major: 'F&B', gender: 'Nam', department: 'FOH', batch: 'K46' },
-    { _id: '35', name: 'Giàng A Phong', major: 'Bếp', gender: 'Nam', department: 'BOH', batch: 'K46' },
+    { _id: '35', name: 'Giàng A Phong', major: 'Bếp', gender: 'Nữ', department: 'BOH', batch: 'K46' },
     { _id: '36', name: 'Chu Thị De', major: 'F&B', gender: 'Nữ', department: 'FOH', batch: 'K46' },
     { _id: '37', name: 'Phu Mè Gơ', major: 'F&B', gender: 'Nữ', department: 'FOH', batch: 'K46' },
     { _id: '38', name: 'Thào A Canh', major: 'F&B', gender: 'Nam', department: 'FOH', batch: 'K46' }
@@ -59,7 +58,7 @@ function calcAvg(evalData) {
 }
 
 app.get('/api/interns', (req, res) => {
-  let data = db.interns;
+  const data = db.interns;
   if (req.query.batch) data = data.filter(i => i.batch === req.query.batch);
   if (req.query.department) data = data.filter(i => i.department === req.query.department);
   res.json(data.sort((a, b) => a.name.localeCompare(b.name)));
